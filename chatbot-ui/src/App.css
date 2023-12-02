@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%
+}
+
+body {
+  background:rgb(5,151,145);
+  color: white;
+  font-family: 'Poppins', sans-serif
+}
+
+.App {
+  max-height: 100vh;
+  display: flex;
+  overflow-y: hidden;
+  max-width: 100%;
+  flex-direction: column;
+}
+
+
+.site-identity {
+  font-size: 3rem;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 1rem;
+  min-width: 300px;
+}
+
+.logo {
+  flex: 10;
+  margin: 1rem;
+  max-width: 6rem;
+}
+
+.site-identity > span {
+  flex: 90;
+  margin: 1rem;
+}
+/* Chat Window */
+
+.main {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+  margin-bottom: 0rem;
+}
+
+.chat-window {
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 96rem;
+  height: calc(100vh - 20rem) ;
+}
+
+.loading-indicator {
+  margin: 1rem;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  border-top: 5px solid rgba(15,56,73, 0.75);
+  width: 2.5rem;
+  height: 2.5rem;
+  animation: spinner 2s linear infinite;
+  position: absolute;
+
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.chat-bubble {
+  margin: 1rem;
+  padding: 2rem 3rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  text-align: justify;
+  border-radius: 0.5rem; 
+  max-width: fit-content;
+  border-radius: 0.5rem; 
+}
+
+.user {
+  background: rgb(15,56,73);
+}
+
+.bot {
+  background: rgb(187,229,225);
+  align-items: flex-end;
+  color:  rgb(15,56,73);
+}
+
+.chat-footer {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-avatar {
+  object-fit: cover;
+  width: 3.5rem;
+  margin-right: 2rem;
+  border-radius: 0.5rem;
+  background-color: rgba(15,56,73,1);
+}
+
+.input-section {
+  padding: 0.5rem;
+  background: rgba(15,56,73, 1);
+  display: flex;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  width: 80%;
+  max-width: 120rem;
+}
+
+.input-section > input {
+  width: calc(100% - 3rem);
+  outline: none;
+  padding: 1.25rem;
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 3rem;
+}
+
+.input-section > input, .send {
+  background: transparent;
+  border: none;
+}
+
+.send {
+  margin-right: 1rem;
+}
+
+.chat-footer > p {
+  margin: 2rem 0;
+  text-align: center;
+  max-width: 75%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.chat-window::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.chat-window {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

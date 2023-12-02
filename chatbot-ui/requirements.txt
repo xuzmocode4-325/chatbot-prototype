@@ -1,0 +1,10 @@
+openai 
+langchain 
+tiktoken 
+faiss-cpu 
+python-dotenv 
+pinecone-client
+flask 
+flask-cors
+duckduckgo-search
+joblib
