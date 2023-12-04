@@ -132,8 +132,6 @@ agent = ZeroShotAgent(llm_chain=llm_chain, tools=tools, verbose=verbosity)
 
 agent_chain = AgentExecutor.from_agent_and_tools(
     agent=agent, 
-    # max_iterations=5, 
-    # max_execution_time=60.0,
     tools=tools, verbose=True, 
     memory=memory, 
 )
