@@ -29,6 +29,7 @@ const App = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ user_input: userInput }),
+        timeout: 40000, // Set a timeout in milliseconds
       });
 
       if (!response.ok) {
