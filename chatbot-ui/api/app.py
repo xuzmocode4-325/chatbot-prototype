@@ -132,8 +132,10 @@ agent = ZeroShotAgent(llm_chain=llm_chain, tools=tools, verbose=verbosity)
 
 agent_chain = AgentExecutor.from_agent_and_tools(
     agent=agent, 
-    tools=tools, verbose=True, 
+    tools=tools, 
+    verbose=True, 
     memory=memory, 
+    handle_parsing_errors=True
 )
 
 def get_response(input):
