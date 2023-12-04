@@ -151,7 +151,7 @@ CORS(app, resources={r"/chat": {"origins": os.getenv("CORS_ORIGIN")}})
 
 async def process_user_input(user_input):
     # Simulate processing time
-    await asyncio.sleep(10)
+    await asyncio.sleep(0)
 
     # Perform chatbot processing here
     chatbot_response = get_response(user_input)
