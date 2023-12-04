@@ -53,7 +53,7 @@ qa = RetrievalQA.from_chain_type(
 )
 
 # websearch powered by DuckDuckGo
-wrapper = DuckDuckGoSearchAPIWrapper(max_results=10)
+wrapper = DuckDuckGoSearchAPIWrapper(max_results=5)
 search = DuckDuckGoSearchRun(api_wrapper=wrapper, backend='text')
 def duck_wrapper(input_text):
     try:
@@ -137,7 +137,11 @@ llm_chain = LLMChain(llm=llm, prompt=prompt)
 agent = ZeroShotAgent(llm_chain=llm_chain, tools=tools, verbose=verbosity)
 
 agent_chain = AgentExecutor.from_agent_and_tools(
-    agent=agent, tools=tools, verbose=verbosity, memory=memory
+    agent=agent, 
+    max_iterations=3, 
+    max_execution_time=9.0,
+    tools=tools, verbose=True, 
+    memory=memory, 
 )
 
 def get_response(input):
@@ -148,40 +152,11 @@ langchain.debug = verbosity
 app = Flask(__name__)
 CORS(app, resources={r"/chat": {"origins": os.getenv("CORS_ORIGIN")}})
 
-
-async def process_user_input(user_input):
-    # Simulate processing time
-    await asyncio.sleep(0)
-
-    # Perform chatbot processing here
-    chatbot_response = get_response(user_input)
-
-    # Additional processing if needed
-
-    return chatbot_response
-
-async def background_task(user_input):
-    # Perform background tasks, if any
-    # ...
-
-    # Get chatbot response
-    chatbot_response = await process_user_input(user_input)
-
-    # Additional processing if needed
-
-    return chatbot_response
-
 @app.route('/chat', methods=['POST'])
 def chat():
     user_input = request.json.get('user_input')
 
-    # Respond immediately with an initial message
-    initial_response = {"message": "Let me think for a while."}
-
-    # Start the background task
-    asyncio.create_task(background_task(user_input))
-
-    return jsonify(initial_response)
+    return jsonify(get_response(user_input))
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
