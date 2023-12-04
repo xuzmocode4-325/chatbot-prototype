@@ -1,6 +1,7 @@
 import os
 import openai
 #import joblib
+import asyncio
 import pinecone  
 import langchain
 from flask_cors import CORS
@@ -147,16 +148,40 @@ langchain.debug = verbosity
 app = Flask(__name__)
 CORS(app, resources={r"/chat": {"origins": os.getenv("CORS_ORIGIN")}})
 
+
+async def process_user_input(user_input):
+    # Simulate processing time
+    await asyncio.sleep(10)
+
+    # Perform chatbot processing here
+    chatbot_response = get_response(user_input)
+
+    # Additional processing if needed
+
+    return chatbot_response
+
+async def background_task(user_input):
+    # Perform background tasks, if any
+    # ...
+
+    # Get chatbot response
+    chatbot_response = await process_user_input(user_input)
+
+    # Additional processing if needed
+
+    return chatbot_response
+
 @app.route('/chat', methods=['POST'])
 def chat():
+    user_input = request.json.get('user_input')
 
-  # Receive input from client
-  user_input = request.json.get('user_input')
-  # Process user_input with your chatbot
-  # ...
-  # Get chatbot's response
-  #response.mimetype = "text/plain"
-  return get_response(user_input)
+    # Respond immediately with an initial message
+    initial_response = {"message": "Let me think for a while."}
+
+    # Start the background task
+    asyncio.create_task(background_task(user_input))
+
+    return jsonify(initial_response)
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(debug=True, port=5000)
