@@ -7,5 +7,3 @@ pinecone-client
 flask 
 flask-cors
 duckduckgo-search
-joblib
-asyncio

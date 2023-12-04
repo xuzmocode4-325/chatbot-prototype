@@ -140,7 +140,6 @@ def get_response(input):
     return agent_chain(input)
 langchain.debug = verbosity
 
-
 app = Flask(__name__)
 CORS(app, resources={r"/chat": {"origins": os.getenv("CORS_ORIGIN")}})
 
