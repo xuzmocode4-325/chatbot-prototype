@@ -16,5 +16,7 @@ To deploy on your local machine.
 4. In a new terminal run `npm start`.
 
 Additional requirements. 
+1. Open AI API key
+2. Pinecone Vector Index of Kegg Medicus Database Information
 
 Access to the pincone vecordatabase for application testing can be requested via katlegothobye@yahoo.com
