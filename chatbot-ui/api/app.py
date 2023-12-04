@@ -138,8 +138,8 @@ agent = ZeroShotAgent(llm_chain=llm_chain, tools=tools, verbose=verbosity)
 
 agent_chain = AgentExecutor.from_agent_and_tools(
     agent=agent, 
-    max_iterations=3, 
-    max_execution_time=9.0,
+    # max_iterations=5, 
+    # max_execution_time=60.0,
     tools=tools, verbose=True, 
     memory=memory, 
 )
@@ -155,7 +155,6 @@ CORS(app, resources={r"/chat": {"origins": os.getenv("CORS_ORIGIN")}})
 @app.route('/chat', methods=['POST'])
 def chat():
     user_input = request.json.get('user_input')
-
     return jsonify(get_response(user_input))
 
 if __name__ == '__main__':

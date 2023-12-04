@@ -28,7 +28,7 @@ const App = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_input: userInput }),
+        body: JSON.stringify({user_input: userInput }),
         timeout: 40000, // Set a timeout in milliseconds
       });
 
@@ -56,6 +56,13 @@ const App = () => {
       console.log('Loading State:', loading);
     }
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      // If the Enter key is pressed, send the message
+      handleSendMessage();
+    }
+  };
   
   return (
     <div className="App">
@@ -80,6 +87,7 @@ const App = () => {
               className="input-field"
               placeholder="Message Medi-Guide..."
               value={userInput}
+              onKeyDown={handleKeyPress}
               onChange={handleInputChange}
              />
             {/* Display loading indicator if loading is true */}

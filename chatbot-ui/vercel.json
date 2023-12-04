@@ -1,8 +1,13 @@
 {
-    "routes": [
-      {
-        "src": "/chat",
-        "dest": "api/app"
-      }
-    ]
+  "routes": [
+    {
+      "src": "/chat",
+      "dest": "api/app"
+    }
+  ], 
+  "functions": {
+    "api/app.py": {
+      "maxDuration": 45
+    }
   }
+}
