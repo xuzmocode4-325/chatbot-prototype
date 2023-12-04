@@ -1,7 +1,5 @@
 import os
 import openai
-#import joblib
-import asyncio
 import pinecone  
 import langchain
 from flask_cors import CORS
@@ -19,7 +17,6 @@ from langchain.memory import ConversationBufferMemory, ReadOnlySharedMemory
 
 load_dotenv()
 verbosity = False
-#joblib.parallel.BACKEND = 'loky'
 
 llm = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"), 
                  temperature=0.0, 
@@ -36,7 +33,6 @@ pinecone.init(
 )   
 
 index_name = 'kegg-medicus-database-index'
-#index_filename = "/static/cached_index.joblib"
 index = pinecone.Index(index_name)
 
 vectorstore = Pinecone(
@@ -67,9 +63,7 @@ def duck_wrapper(input_text):
 
 # conversation summary tool
 mem_template = """This is a conversation between a human and a bot:
-
 {chat_history}
-
 Write a summary of the conversation for {input}:
 """
 
