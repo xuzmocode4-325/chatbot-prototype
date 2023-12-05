@@ -7,7 +7,7 @@
   ], 
   "functions": {
     "api/app.py": {
-      "maxDuration": 45,
+      "maxDuration": 300,
       "memory": 3008
     }
   }
